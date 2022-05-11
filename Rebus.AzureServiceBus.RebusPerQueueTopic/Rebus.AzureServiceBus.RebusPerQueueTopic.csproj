@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>6.0.1</PackageVersion>
+    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Rebus.AzureServiceBus.RebusPerQueueTopic</RootNamespace>
+    <AssemblyName>Rebus.AzureServiceBus.RebusPerQueueTopic</AssemblyName>
+    <Authors>oguzhankahyaoglu</Authors>
+    <PackageId>rebus-azure-servicebus-rebus-perqueue</PackageId>
+    <PackageProjectUrl>https://github.com/oguzhankahyaoglu/Rebus.AzureServiceBus.RebusPerQueueTopic</PackageProjectUrl>
+    <PackageTags>rebus azure servicebus rebusperqueue perqueue</PackageTags>
+    <PackageDescription>
+      Rebus.AzureServiceBus rewrite enabling us following:
+      1- Minimal usage for topic/queues even in one-way/two-way communication between Rebus/Masstransit libraries
+      2- Skipped implementation of Sagas, this library is working statelessly.
+      3- Each topic/queue subscription is living on its own Rebus instance
+      4- Health checking of each topic/queue subscription
+      5- Full control on Queue/Topic/Topic Subscription naming
+      6- For development environment you have an option of: you can prefix all queue/topic names starting with the machine name; this enables me to seperate my queues and application from another guy working on the same project since my queues are created like "oguzhan/queue1" whereas the other guy's "otherguy/queue1"
+      7- For topic subscribing, you have the option of whether you will need multiple node subscription or not. If enabled, for topic "Topic1" and subscription name of "sub", it will create "Topic1/sub-node1" whereas "node1" is the docker container name.
+      8- In masstransit you have the limitation of each message is transported with its full namespace. If you move its namespace or change class name, MT will not consume the message. This was an annoying issue for all of us in the company. We are free from this issue thanks to Rebus.
+    </PackageDescription>
+    <RepositoryUrl>https://github.com/oguzhankahyaoglu/Rebus.AzureServiceBus.RebusPerQueueTopic</RepositoryUrl>
+    <PackageIcon>little_rebusbus2_copy-500x500.png</PackageIcon>
+    <Title>Rebus.AzureServiceBus.RebusPerQueueTopic</Title>
+    <DocumentationFile>..\output\Rebus.AzureServiceBus.RebusPerQueueTopic.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>..\output</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>..\output</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Rebus" Version="[6.6.0, 7)" />
+
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="5.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="5.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="5.0.12" />
+    <PackageReference Include="Rebus.Serilog" Version="[6, 7)" />
+    <PackageReference Include="Rebus.ServiceProvider.Named" Version="0.3.0" />
+    <PackageReference Include="Serilog" Version="2.9.0" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.5.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\artwork\little_rebusbus2_copy-500x500.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+</Project>

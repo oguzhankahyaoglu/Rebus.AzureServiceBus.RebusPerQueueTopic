@@ -1,0 +1,902 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Rebus.AzureServiceBus.RebusPerQueueTopic</name>
+    </assembly>
+    <members>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureRebusCommon.DefaultRetryStrategy">
+            <summary>
+            Deferred retry'ı zaten yönettiğimiz için buna pek gerek kalmayacak
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.DefaultNameFormatter">
+            <summary>
+            A formatter that formats queue, topic and subscription names using a default convention.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.DefaultNameFormatter.#ctor">
+            <summary>
+            Creates the name formatter.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.DefaultNameFormatter.FormatQueueName(System.String)">
+            <summary>
+            Formats the queue name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.DefaultNameFormatter.FormatSubscriptionName(System.String)">
+            <summary>
+            Formats the subscription name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.DefaultNameFormatter.FormatTopicName(System.String)">
+            <summary>
+            Formats the topic name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter">
+            <summary>
+            Formatter for queue, topic and subscription names on ASB.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter.FormatQueueName(System.String)">
+            <summary>
+            Formats the queue name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter.FormatSubscriptionName(System.String)">
+            <summary>
+            Formats the subscription name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter.FormatTopicName(System.String)">
+            <summary>
+            Formats the topic name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyNameFormatter">
+            <summary>
+            Formats the names how it was done from v6.0.4 and higher.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyNameFormatter.#ctor">
+            <summary>
+            Creates the formatter.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyNameFormatter.FormatQueueName(System.String)">
+            <summary>
+            Formats the queue name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyNameFormatter.FormatSubscriptionName(System.String)">
+            <summary>
+            Formats the subscription name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyNameFormatter.FormatTopicName(System.String)">
+            <summary>
+            Formats the topic name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyV3NameFormatter">
+            <summary>
+            Formats the names according to how it was done since at least v3, up to v6.0.3.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyV3NameFormatter.FormatQueueName(System.String)">
+            <summary>
+            Formats the queue name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyV3NameFormatter.FormatSubscriptionName(System.String)">
+            <summary>
+            Formats the subscription name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.LegacyV3NameFormatter.FormatTopicName(System.String)">
+            <summary>
+            Formats the topic name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.PrefixNameFormatter">
+            <summary>
+            Formats all queue and topic names using a prefix.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.PrefixNameFormatter.#ctor(System.String)">
+            <summary>
+            Creates the name formatter.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.PrefixNameFormatter.#ctor(System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter)">
+            <summary>
+            Creates the name formatter using a specified inner name formatter.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.PrefixNameFormatter.FormatQueueName(System.String)">
+            <summary>
+            Formats the queue name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.PrefixNameFormatter.FormatSubscriptionName(System.String)">
+            <summary>
+            Formats the subscription name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.PrefixNameFormatter.FormatTopicName(System.String)">
+            <summary>
+            Formats the topic name into a usable name on ASB, normalizing if needed.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator.RebusLoggingExtensions.ToJsonString(System.Object,System.Boolean,System.Boolean)">
+            <summary>Converts given object to JSON string.</summary>
+            <returns></returns>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator.RebusPerQueueTopic.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.String,System.Boolean,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <param name="env"></param>
+            <param name="serviceBusConnectionString"></param>
+            <param name="useDevelopmentModeMachineNamePrefix">True=> machinename prefixed queues/topics for development purposes</param>
+            <param name="settings"></param>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport">
+            <summary>
+            Implementation of <see cref="T:Rebus.Transport.ITransport"/> that uses Azure Service Bus queues to send/receive messages.
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.OutgoingMessagesKey">
+            <summary>
+            Outgoing messages are stashed in a concurrent queue under this key
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.MagicSubscriptionPrefix">
+            <summary>
+            Subscriber "addresses" are prefixed with this bad boy so we can recognize them and publish to a topic client instead
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.MagicDeferredMessagesAddress">
+            <summary>
+            External timeout manager address set to this magic address will be routed to the destination address specified by the <see cref="F:Rebus.Messages.Headers.DeferredRecipient"/> header
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.#ctor(System.String,Rebus.Logging.IRebusLoggerFactory,Rebus.Threading.IAsyncTaskFactory,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter,System.Threading.CancellationToken,Azure.Core.TokenCredential)">
+            <summary>
+            Constructs the transport, connecting to the service bus pointed to by the connection string.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.GetSubscriberAddresses(System.String)">
+            <summary>
+            Gets "subscriber addresses" by getting one single magic "queue name", which is then
+            interpreted as a publish operation to a topic when the time comes to send to that "queue"
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.RegisterSubscriber(System.String,System.String)">
+            <summary>
+            Registers this endpoint as a subscriber by creating a subscription for the given topic, setting up
+            auto-forwarding from that subscription to this endpoint's input queue
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.UnregisterSubscriber(System.String,System.String)">
+            <summary>
+            Unregisters this endpoint as a subscriber by deleting the subscription for the given topic
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.CreateQueue(System.String)">
+            <summary>
+            Creates a queue with the given address
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.Send(System.String,Rebus.Messages.TransportMessage,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+            <summary>
+            Sends the given message to the queue with the given <paramref name="destinationAddress" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.Receive(Rebus.Transport.ITransactionContext,System.Threading.CancellationToken)">
+            <summary>
+            Receives the next message from the input queue. Returns null if no message was available
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.Address">
+            <summary>
+            Gets the input queue name for this transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.Initialize">
+            <summary>
+            Initializes the transport by ensuring that the input queue has been created
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.IsCentralized">
+            <summary>
+            Always returns true because Azure Service Bus topics and subscriptions are global
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.MaximumMessagePayloadBytes">
+            <summary>
+            Configures the maximum total message payload in bytes when auto-batching outgoing messages. Should probably only be modified if the SKU allows for greater payload sizes
+            (e.g. 'Premium' at the time of writing allows for 1 MB) Please add some leeway, because Rebus' payload size estimation is not entirely precise
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusQueueOneWayToMasstransitTransport.Dispose">
+            <summary>
+            Disposes all resources associated with this particular transport instance
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport">
+            <summary>
+            Implementation of <see cref="T:Rebus.Transport.ITransport"/> that uses Azure Service Bus topics to send ONLY messages.
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.OutgoingMessagesKey">
+            <summary>
+            Outgoing messages are stashed in a concurrent queue under this key
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.MagicDeferredMessagesAddress">
+            <summary>
+            External timeout manager address set to this magic address will be routed to the destination address specified by the <see cref="F:Rebus.Messages.Headers.DeferredRecipient"/> header
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.#ctor(System.String,System.String,Rebus.Logging.IRebusLoggerFactory,Rebus.Threading.IAsyncTaskFactory,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter,Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings,System.Threading.CancellationToken,Azure.Core.TokenCredential)">
+            <summary>
+            Constructs the transport, connecting to the service bus pointed to by the connection string.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.GetSubscriberAddresses(System.String)">
+            <summary>
+            Gets "subscriber addresses" by getting one single magic "queue name", which is then
+            interpreted as a publish operation to a topic when the time comes to send to that "queue"
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.RegisterSubscriber(System.String,System.String)">
+            <summary>
+            Registers this endpoint as a subscriber by creating a subscription for the given topic, setting up
+            auto-forwarding from that subscription to this endpoint's input queue
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.UnregisterSubscriber(System.String,System.String)">
+            <summary>
+            Unregisters this endpoint as a subscriber by deleting the subscription for the given topic
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.CreateQueue(System.String)">
+            <summary>
+            Creates a queue with the given address
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.Send(System.String,Rebus.Messages.TransportMessage,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+            <summary>
+            Sends the given message to the queue with the given <paramref name="destinationAddress" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.Receive(Rebus.Transport.ITransactionContext,System.Threading.CancellationToken)">
+            <summary>
+            Receives the next message from the input queue. Returns null if no message was available
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.Address">
+            <summary>
+            Gets the input queue name for this transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.Initialize">
+            <summary>
+            Initializes the transport by ensuring that the input queue has been created
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.IsCentralized">
+            <summary>
+            Always returns true because Azure Service Bus topics and subscriptions are global
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigMasstransit.AzureServiceBusTopicOneWayToMasstransitTransport.Dispose">
+            <summary>
+            Disposes all resources associated with this particular transport instance
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport">
+            <summary>
+            Implementation of <see cref="T:Rebus.Transport.ITransport"/> that uses Azure Service Bus queues to send/receive messages.
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.OutgoingMessagesKey">
+            <summary>
+            Outgoing messages are stashed in a concurrent queue under this key
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.MagicSubscriptionPrefix">
+            <summary>
+            Subscriber "addresses" are prefixed with this bad boy so we can recognize them and publish to a topic client instead
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.MagicDeferredMessagesAddress">
+            <summary>
+            External timeout manager address set to this magic address will be routed to the destination address specified by the <see cref="F:Rebus.Messages.Headers.DeferredRecipient"/> header
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.#ctor(System.String,Rebus.Logging.IRebusLoggerFactory,Rebus.Threading.IAsyncTaskFactory,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter,System.Threading.CancellationToken,Azure.Core.TokenCredential)">
+            <summary>
+            Constructs the transport, connecting to the service bus pointed to by the connection string.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.GetSubscriberAddresses(System.String)">
+            <summary>
+            Gets "subscriber addresses" by getting one single magic "queue name", which is then
+            interpreted as a publish operation to a topic when the time comes to send to that "queue"
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.RegisterSubscriber(System.String,System.String)">
+            <summary>
+            Registers this endpoint as a subscriber by creating a subscription for the given topic, setting up
+            auto-forwarding from that subscription to this endpoint's input queue
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.UnregisterSubscriber(System.String,System.String)">
+            <summary>
+            Unregisters this endpoint as a subscriber by deleting the subscription for the given topic
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.CreateQueue(System.String)">
+            <summary>
+            Creates a queue with the given address
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.Send(System.String,Rebus.Messages.TransportMessage,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+            <summary>
+            Sends the given message to the queue with the given <paramref name="destinationAddress" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.Receive(Rebus.Transport.ITransactionContext,System.Threading.CancellationToken)">
+            <summary>
+            Receives the next message from the input queue. Returns null if no message was available
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.Address">
+            <summary>
+            Gets the input queue name for this transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.Initialize">
+            <summary>
+            Initializes the transport by ensuring that the input queue has been created
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.IsCentralized">
+            <summary>
+            Always returns true because Azure Service Bus topics and subscriptions are global
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.MaximumMessagePayloadBytes">
+            <summary>
+            Configures the maximum total message payload in bytes when auto-batching outgoing messages. Should probably only be modified if the SKU allows for greater payload sizes
+            (e.g. 'Premium' at the time of writing allows for 1 MB) Please add some leeway, because Rebus' payload size estimation is not entirely precise
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueueOneWay.AzureServiceBusQueueOneWayTransport.Dispose">
+            <summary>
+            Disposes all resources associated with this particular transport instance
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AdditionalAzureServiceBusConfigurationExtensions">
+            <summary>
+            Experimental configuration extensions for changing the way dead-lettering works with Rebus
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AdditionalAzureServiceBusConfigurationExtensions.UseNativeDeadlettering(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport})">
+            <summary>
+            Extends Rebus' built-in deadlettering with the ability to use Azure Service Bus' built-in deadlettering
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport">
+            <summary>
+            Implementation of <see cref="T:Rebus.Transport.ITransport"/> that uses Azure Service Bus queues to send/receive messages.
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.OutgoingMessagesKey">
+            <summary>
+            Outgoing messages are stashed in a concurrent queue under this key
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.MagicSubscriptionPrefix">
+            <summary>
+            Subscriber "addresses" are prefixed with this bad boy so we can recognize them and publish to a topic client instead
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.MagicDeferredMessagesAddress">
+            <summary>
+            External timeout manager address set to this magic address will be routed to the destination address specified by the <see cref="F:Rebus.Messages.Headers.DeferredRecipient"/> header
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.#ctor(System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings,Rebus.Logging.IRebusLoggerFactory,Rebus.Threading.IAsyncTaskFactory,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter,System.Threading.CancellationToken,Azure.Core.TokenCredential)">
+            <summary>
+            Constructs the transport, connecting to the service bus pointed to by the connection string.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.GetSubscriberAddresses(System.String)">
+            <summary>
+            Gets "subscriber addresses" by getting one single magic "queue name", which is then
+            interpreted as a publish operation to a topic when the time comes to send to that "queue"
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.RegisterSubscriber(System.String,System.String)">
+            <summary>
+            Registers this endpoint as a subscriber by creating a subscription for the given topic, setting up
+            auto-forwarding from that subscription to this endpoint's input queue
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.UnregisterSubscriber(System.String,System.String)">
+            <summary>
+            Unregisters this endpoint as a subscriber by deleting the subscription for the given topic
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.CreateQueue(System.String)">
+            <summary>
+            Creates a queue with the given address
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.Send(System.String,Rebus.Messages.TransportMessage,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+            <summary>
+            Sends the given message to the queue with the given <paramref name="destinationAddress" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.Receive(Rebus.Transport.ITransactionContext,System.Threading.CancellationToken)">
+            <summary>
+            Receives the next message from the input queue. Returns null if no message was available
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.Address">
+            <summary>
+            Gets the input queue name for this transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.Initialize">
+            <summary>
+            Initializes the transport by ensuring that the input queue has been created
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.IsCentralized">
+            <summary>
+            Always returns true because Azure Service Bus topics and subscriptions are global
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.PrefetchMessages(System.Int32)">
+            <summary>
+            Configures the transport to prefetch the specified number of messages into an in-mem queue for processing, disabling automatic peek lock renewal
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransport.Dispose">
+            <summary>
+            Disposes all resources associated with this particular transport instance
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings">
+            <summary>
+            Allows for configuring additional options for the Azure Service Bus transport (when running in full-duplex mode)
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.EnablePartitioning">
+            <summary>
+            Enables partitioning whereby Azure Service Bus will be able to distribute messages between message stores and this way increase throughput.
+            Partitioning cannot be enabled after a queue is created, so it must be enabled before Rebus creates the input queue.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.SetMessagePayloadSizeLimit(System.Int32)">
+            <summary>
+            Configures the maxiumum payload request limit. Relevant, when Rebus auto-batches sent messages, keeping the size of each individual batch below 256 kB.
+            If the SKU allows more than the default 256 kB, it can be increased by calling this method.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.SetDuplicateDetectionHistoryTimeWindow(System.TimeSpan)">
+            <summary>
+            Configures the duplicate detection history window on the input queue. Please note that this setting cannot be changed after the queue is created,
+            so it must be configured before Rebus creates the input queue the first time. The value must be at least 20 seconds and at most 1 day.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.SetAutoDeleteOnIdle(System.TimeSpan)">
+            <summary>
+            Configures the auto-delete-on-idle duration of the input queue. This will make Azure Service Bus automatically delete
+            the queue when the time has elapsed without any activity.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.SetDefaultMessageTimeToLive(System.TimeSpan)">
+            <summary>
+            Configures the default TTL on the input queue. This is the longest messages get to stay in the input queue.
+            If a shorter TTL is set on the message when sending it, that TTL is used instead.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.SetMessagePeekLockDuration(System.TimeSpan)">
+            <summary>
+            Configures the message peek lock duration for received messages. 
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.EnablePrefetching(System.Int32)">
+            <summary>
+            Enables prefetching whereby a batch of messages will be prefetched instead of only one at a time.
+            By enabling prefetching, the automatic peek lock renewal will be disabled, because it is assumed
+            that prefetching will be enabled only in cases where messages can be processed fairly quickly.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.UseLegacyNaming">
+            <summary>
+            Enables "legacy naming", which means that queue names are lowercased, and topic names are "normalized" to be in accordance
+            with how v6 of the transport did it.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.DoNotCreateQueues">
+            <summary>
+            Skips queue creation. Can be used when the connection string does not have manage rights to the queue object, e.g.
+            when a read-only shared-access signature is used to access an input queue. Please note that the signature MUST
+            have write access to the configured error queue, unless Azure Service Bus' own dead-lettering is activated on the 
+            input queue (which is probably the preferred approach with this option)
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.DoNotCheckQueueConfiguration">
+            <summary>
+            Skips queue configuration checks. Can be used when the connection string does not have manage rights to the queue object, e.g.
+            when a read-only shared-access signature is used to access an input queue. Please note that the signature MUST
+            have write access to the configured error queue, unless Azure Service Bus' own dead-lettering is activated on the 
+            input queue (which is probably the preferred approach with this option)
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusQueueTransportSettings.SetReceiveOperationTimeout(System.TimeSpan)">
+            <summary>
+            Sets the receive operation timeout. This is basically the time the client waits for a message to appear in the queue.
+            This includes the time taken to establish a connection (either during the first receive or when connection needs to be re-established).
+            Defaults to 5 seconds.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusTransportClientSettings">
+            <summary>
+            Allows for configuring additional options for the Azure Service Bus transport (when running in one-way client mode)
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusTransportClientSettings.SetMessagePayloadSizeLimit(System.Int32)">
+            <summary>
+            Configures the maxiumum payload request limit. Relevant, when Rebus auto-batches sent messages, keeping the size of each individual batch below 256 kB.
+            If the SKU allows more than the default 256 kB, it can be increased by calling this method.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigQueue.AzureServiceBusTransportClientSettings.UseLegacyNaming">
+            <summary>
+            Enables "legacy naming", which means that queue names are lowercased, and topic names are "normalized" to be in accordance
+            with how v6 of the transport did it.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport">
+            <summary>
+            Implementation of <see cref="T:Rebus.Transport.ITransport"/> that uses Azure Service Bus topics to send ONLY messages.
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.OutgoingMessagesKey">
+            <summary>
+            Outgoing messages are stashed in a concurrent queue under this key
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.MagicDeferredMessagesAddress">
+            <summary>
+            External timeout manager address set to this magic address will be routed to the destination address specified by the <see cref="F:Rebus.Messages.Headers.DeferredRecipient"/> header
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.#ctor(System.String,System.String,Rebus.Logging.IRebusLoggerFactory,Rebus.Threading.IAsyncTaskFactory,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter,Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings,System.Threading.CancellationToken,Azure.Core.TokenCredential)">
+            <summary>
+            Constructs the transport, connecting to the service bus pointed to by the connection string.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.GetSubscriberAddresses(System.String)">
+            <summary>
+            Gets "subscriber addresses" by getting one single magic "queue name", which is then
+            interpreted as a publish operation to a topic when the time comes to send to that "queue"
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.RegisterSubscriber(System.String,System.String)">
+            <summary>
+            Registers this endpoint as a subscriber by creating a subscription for the given topic, setting up
+            auto-forwarding from that subscription to this endpoint's input queue
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.UnregisterSubscriber(System.String,System.String)">
+            <summary>
+            Unregisters this endpoint as a subscriber by deleting the subscription for the given topic
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.CreateQueue(System.String)">
+            <summary>
+            Creates a queue with the given address
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.Send(System.String,Rebus.Messages.TransportMessage,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+            <summary>
+            Sends the given message to the queue with the given <paramref name="destinationAddress" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.Receive(Rebus.Transport.ITransactionContext,System.Threading.CancellationToken)">
+            <summary>
+            Receives the next message from the input queue. Returns null if no message was available
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.Address">
+            <summary>
+            Gets the input queue name for this transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.Initialize">
+            <summary>
+            Initializes the transport by ensuring that the input queue has been created
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.IsCentralized">
+            <summary>
+            Always returns true because Azure Service Bus topics and subscriptions are global
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopicOneWay.AzureServiceBusTopicOneWayTransport.Dispose">
+            <summary>
+            Disposes all resources associated with this particular transport instance
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicConfigurationExtensions">
+            <summary>
+            Configuration extensions for the Azure Service Bus transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicConfigurationExtensions.UseAzureServiceBusTopic(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+            <summary>
+            Configures Rebus to use Azure Service Bus Topic to transport messages, connecting to the service bus instance pointed to by the connection string
+            (or the connection string with the specified name from the current app.config)
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport">
+            <summary>
+            Implementation of <see cref="T:Rebus.Transport.ITransport"/> that uses Azure Service Bus topics to send/receive messages.
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.OutgoingMessagesKey">
+            <summary>
+            Outgoing messages are stashed in a concurrent queue under this key
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.MagicDeferredMessagesAddress">
+            <summary>
+            External timeout manager address set to this magic address will be routed to the destination address specified by the <see cref="F:Rebus.Messages.Headers.DeferredRecipient"/> header
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.#ctor(System.String,System.String,System.String,Rebus.Logging.IRebusLoggerFactory,Rebus.Threading.IAsyncTaskFactory,Rebus.AzureServiceBus.RebusPerQueueTopic.AzureServiceBus.NameFormat.INameFormatter,Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings,System.Threading.CancellationToken,Azure.Core.TokenCredential)">
+            <summary>
+            Constructs the transport, connecting to the service bus pointed to by the connection string.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.GetSubscriberAddresses(System.String)">
+            <summary>
+            Gets "subscriber addresses" by getting one single magic "queue name", which is then
+            interpreted as a publish operation to a topic when the time comes to send to that "queue"
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.RegisterSubscriber(System.String,System.String)">
+            <summary>
+            Registers this endpoint as a subscriber by creating a subscription for the given topic, setting up
+            auto-forwarding from that subscription to this endpoint's input queue
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.UnregisterSubscriber(System.String,System.String)">
+            <summary>
+            Unregisters this endpoint as a subscriber by deleting the subscription for the given topic
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.CreateQueue(System.String)">
+            <summary>
+            Creates a queue with the given address
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.Send(System.String,Rebus.Messages.TransportMessage,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+            <summary>
+            Sends the given message to the queue with the given <paramref name="destinationAddress" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.Receive(Rebus.Transport.ITransactionContext,System.Threading.CancellationToken)">
+            <summary>
+            Receives the next message from the input queue. Returns null if no message was available
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.Address">
+            <summary>
+            Gets the input queue name for this transport
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.Initialize">
+            <summary>
+            Initializes the transport by ensuring that the input queue has been created
+            </summary>
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.IsCentralized">
+            <summary>
+            Always returns true because Azure Service Bus topics and subscriptions are global
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.PrefetchMessages(System.Int32)">
+            <summary>
+            Configures the transport to prefetch the specified number of messages into an in-mem queue for processing, disabling automatic peek lock renewal
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransport.Dispose">
+            <summary>
+            Disposes all resources associated with this particular transport instance
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings">
+            <summary>
+            Allows for configuring additional options for the Azure Service Bus transport (when running in full-duplex mode)
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.EnablePartitioning">
+            <summary>
+            Enables partitioning whereby Azure Service Bus will be able to distribute messages between message stores and this way increase throughput.
+            Partitioning cannot be enabled after a queue is created, so it must be enabled before Rebus creates the input queue.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.SetMessagePayloadSizeLimit(System.Int32)">
+            <summary>
+            Configures the maxiumum payload request limit. Relevant, when Rebus auto-batches sent messages, keeping the size of each individual batch below 256 kB.
+            If the SKU allows more than the default 256 kB, it can be increased by calling this method.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.SetDuplicateDetectionHistoryTimeWindow(System.TimeSpan)">
+            <summary>
+            Configures the duplicate detection history window on the input queue. Please note that this setting cannot be changed after the queue is created,
+            so it must be configured before Rebus creates the input queue the first time. The value must be at least 20 seconds and at most 1 day.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.SetAutoDeleteOnIdle(System.TimeSpan)">
+            <summary>
+            Configures the auto-delete-on-idle duration of the input queue. This will make Azure Service Bus automatically delete
+            the queue when the time has elapsed without any activity.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.SetDefaultMessageTimeToLive(System.TimeSpan)">
+            <summary>
+            Configures the default TTL on the input queue. This is the longest messages get to stay in the input queue.
+            If a shorter TTL is set on the message when sending it, that TTL is used instead.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.SetMessagePeekLockDuration(System.TimeSpan)">
+            <summary>
+            Configures the message peek lock duration for received messages. 
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.EnablePrefetching(System.Int32)">
+            <summary>
+            Enables prefetching whereby a batch of messages will be prefetched instead of only one at a time.
+            By enabling prefetching, the automatic peek lock renewal will be disabled, because it is assumed
+            that prefetching will be enabled only in cases where messages can be processed fairly quickly.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicTransportSettings.SetReceiveOperationTimeout(System.TimeSpan)">
+            <summary>
+            Sets the receive operation timeout. This is basically the time the client waits for a message to appear in the queue.
+            This includes the time taken to establish a connection (either during the first receive or when connection needs to be re-established).
+            Defaults to 5 seconds.
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.DefaultAzureServiceBusTopicNameConvention">
+            <summary>
+            Helper responsible for implementing how various names turn out
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.DefaultAzureServiceBusTopicNameConvention.GetTopic(System.Type)">
+            <summary>
+            Gets a topic name from the given <paramref name="eventType"/>
+            </summary>
+        </member>
+        <member name="P:Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks.BusHealthCheckOptions.WarmupIgnoreDelayForHealthChecking">
+            <summary>
+            Dont check queue/topic message times for health checks in app startup phase for this duration.
+            By this way, in case too many messages in queue, the checks would be delayed.
+            Default: 1 hour
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks.BusHealthCheckOptions.ExpireConditionDelay">
+            <summary>
+            The returned Timespan would be compared to message's EnqueueTime and in case this delay is exceeded,
+            the queue would be considered is not being consumed and would result in Unhealthy healthcheck
+            Default: 1 hour
+            </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks.RebusHealthChecks">
+            <summary>
+            Masstransit IBus'un healthcheck'ini zorla tetiklemek için mevcut.
+            Bağlantı problemlerinde kendi healthcheck'i ile onu yakayalamıyoruz.
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.Internals.AsyncHelpers.RunSync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            Executes a task synchronously on the calling thread by installing a temporary synchronization context that queues continuations
+             </summary>
+        </member>
+        <member name="T:Rebus.AzureServiceBus.RebusPerQueueTopic.Internals.AsyncHelpers.CustomSynchronizationContext">
+            <summary>
+            Synchronization context that can be "pumped" in order to have it execute continuations posted back to it
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.Internals.AsyncHelpers.CustomSynchronizationContext.Run">
+            <summary>
+            Enqueues the function to be executed and executes all resulting continuations until it is completely done
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.MasstransitHelpers.SetMessageIdFromMasstransitMessage(System.Byte[],Rebus.Logging.ILog)">
+            <summary>
+            Masstransit'ten gelen mesajın id'sini alabilmek için eklendi. Header'da bekliyor Rebus mesajın id'sini
+            </summary>
+            <param name="messageBytes"></param>
+            <param name="log"></param>
+            <param name="message"></param>
+        </member>
+        <member name="T:Rebus.Config.AzureServiceBusQueueOneWayToMasstransitConfigurationExtensions">
+            <summary>
+            Configuration extensions for the Azure Service Bus transport
+            </summary>
+        </member>
+        <member name="M:Rebus.Config.AzureServiceBusQueueOneWayToMasstransitConfigurationExtensions.UseAzureServiceBusQueueAsOneWayToMasstransit(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+            <summary>
+            Configures Rebus to use Azure Service Bus to transport messages as a one-way client (i.e. will not be able to receive any messages)
+            </summary>
+        </member>
+        <member name="T:Rebus.Config.AzureServiceBusTopicOneWayToMasstransitConfigurationExtensions">
+            <summary>
+            Configuration extensions for the Azure Service Bus transport
+            </summary>
+        </member>
+        <member name="M:Rebus.Config.AzureServiceBusTopicOneWayToMasstransitConfigurationExtensions.UseAzureServiceBusTopicOneWayToMasstransit(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+            <summary>
+            Configures Rebus to use Azure Service Bus Topic to SEND/PUBLISH ONLY to transport messages, connecting to the service bus instance pointed to by the connection string
+            (or the connection string with the specified name from the current app.config)
+            </summary>
+        </member>
+        <member name="T:Rebus.Config.AzureServiceBusQueueOneWayConfigurationExtensions">
+            <summary>
+            Configuration extensions for the Azure Service Bus transport
+            </summary>
+        </member>
+        <member name="M:Rebus.Config.AzureServiceBusQueueOneWayConfigurationExtensions.UseAzureServiceBusQueueAsOneWayClient(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+            <summary>
+            Configures Rebus to use Azure Service Bus to transport messages as a one-way client (i.e. will not be able to receive any messages)
+            </summary>
+        </member>
+        <member name="T:Rebus.Config.AzureServiceBusQueueConfigurationExtensions">
+            <summary>
+            Configuration extensions for the Azure Service Bus transport
+            </summary>
+        </member>
+        <member name="M:Rebus.Config.AzureServiceBusQueueConfigurationExtensions.UseAzureServiceBusQueue(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+            <summary>
+            Configures Rebus to use Azure Service Bus queues to transport messages, connecting to the service bus instance pointed to by the connection string
+            (or the connection string with the specified name from the current app.config)
+            </summary>
+        </member>
+        <member name="T:Rebus.Config.AzureServiceBusTopicOneWayConfigurationExtensions">
+            <summary>
+            Configuration extensions for the Azure Service Bus transport
+            </summary>
+        </member>
+        <member name="M:Rebus.Config.AzureServiceBusTopicOneWayConfigurationExtensions.UseAzureServiceBusTopicOneWay(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+            <summary>
+            Configures Rebus to use Azure Service Bus Topic to SEND/PUBLISH ONLY to transport messages, connecting to the service bus instance pointed to by the connection string
+            (or the connection string with the specified name from the current app.config)
+            </summary>
+        </member>
+    </members>
+</doc>
