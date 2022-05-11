@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stuff", "stuff", "{1ABDD7C1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rebus.AzureServiceBus.RebusPerQueueTopic", "Rebus.AzureServiceBus.RebusPerQueueTopic\Rebus.AzureServiceBus.RebusPerQueueTopic.csproj", "{DD32B8FB-6D0D-4FF1-9659-EDAA6DB5A93F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWeb", "TestWeb\TestWeb.csproj", "{413E0255-DD37-43CF-8971-2756777DA1BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebMasstransit", "TestWebMasstransit\TestWebMasstransit.csproj", "{714FD783-9796-4055-AA10-7080F110EF39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +26,14 @@ Global
 		{DD32B8FB-6D0D-4FF1-9659-EDAA6DB5A93F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD32B8FB-6D0D-4FF1-9659-EDAA6DB5A93F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD32B8FB-6D0D-4FF1-9659-EDAA6DB5A93F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{413E0255-DD37-43CF-8971-2756777DA1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{413E0255-DD37-43CF-8971-2756777DA1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{413E0255-DD37-43CF-8971-2756777DA1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{413E0255-DD37-43CF-8971-2756777DA1BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{714FD783-9796-4055-AA10-7080F110EF39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{714FD783-9796-4055-AA10-7080F110EF39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{714FD783-9796-4055-AA10-7080F110EF39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{714FD783-9796-4055-AA10-7080F110EF39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
