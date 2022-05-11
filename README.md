@@ -2,7 +2,7 @@
 
 Forked from the original **Rebus.AzureServiceBus** repository. [Rebus.AzureServiceBus](https://github.com/rebus-org/Rebus.AzureServiceBus).
 
-[![install from nuget](https://img.shields.io/nuget/v/Rebus.AzureServiceBus.BusPerQueueTopic.svg?style=flat-square)](https://www.nuget.org/packages/Rebus.AzureServiceBus.BusPerQueueTopic)
+[![install from nuget](https://img.shields.io/nuget/v/Rebus.AzureServiceBus.RebusPerQueueTopic.svg?style=flat-square)](https://www.nuget.org/packages/Rebus.AzureServiceBus.RebusPerQueueTopic)
 
 # How to use?
 
