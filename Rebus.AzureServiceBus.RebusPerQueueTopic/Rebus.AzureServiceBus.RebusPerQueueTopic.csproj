@@ -2,13 +2,13 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>6.0.1</PackageVersion>
+    <PackageVersion>6.0.2</PackageVersion>
     <TargetFramework>net5.0</TargetFramework>
     <OutputType>Library</OutputType>
     <RootNamespace>Rebus.AzureServiceBus.RebusPerQueueTopic</RootNamespace>
     <AssemblyName>Rebus.AzureServiceBus.RebusPerQueueTopic</AssemblyName>
     <Authors>oguzhankahyaoglu</Authors>
-    <PackageId>rebus-azure-servicebus-rebus-perqueue</PackageId>
+    <PackageId>Rebus.AzureServiceBus.RebusPerQueueTopic</PackageId>
     <PackageProjectUrl>https://github.com/oguzhankahyaoglu/Rebus.AzureServiceBus.RebusPerQueueTopic</PackageProjectUrl>
     <PackageTags>rebus azure servicebus rebusperqueue perqueue</PackageTags>
     <PackageDescription>
