@@ -897,5 +897,160 @@
             (or the connection string with the specified name from the current app.config)
             </summary>
         </member>
+        <member name="T:Rebus.ServiceProvider.Named.ApplicationBuilderExtensions">
+            <summary>
+            Extensions for <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ApplicationBuilderExtensions.UseTypedRebus``1(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Starts the typed Rebus instance.
+            </summary>
+            <typeparam name="TName">The marker type name of the typed bus.</typeparam>
+            <param name="applicationBuilder">The application builder.</param>
+            <returns>The application builder to continue chaining configuring the request pipeline.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ApplicationBuilderExtensions.UseTypedRebus``1(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.Action{Rebus.Bus.IBus})">
+            <summary>
+            Starts the typed Rebus instance.
+            </summary>
+            <typeparam name="TName">The marker type name of the typed bus.</typeparam>
+            <param name="applicationBuilder">The application builder.</param>
+            <param name="configureBus">A delegate to configure the bus.</param>
+            <returns>The application builder to continue chaining configuring the request pipeline.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ApplicationBuilderExtensions.UseNamedRebus(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String)">
+            <summary>
+            Starts the named Rebus instance.
+            </summary>
+            <param name="applicationBuilder">The application builder.</param>
+            <param name="name">The configured name of the bus.</param>
+            <returns>The application builder to continue chaining configuring the request pipeline.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ApplicationBuilderExtensions.UseNamedRebus(Microsoft.AspNetCore.Builder.IApplicationBuilder,System.String,System.Action{Rebus.Bus.IBus})">
+            <summary>
+            Starts the named Rebus instance.
+            </summary>
+            <param name="applicationBuilder">The application builder.</param>
+            <param name="name">The configured name of the bus.</param>
+            <param name="configureBus">A delegate to configure the bus.</param>
+            <returns>The application builder to continue chaining configuring the request pipeline.</returns>
+        </member>
+        <member name="T:Rebus.ServiceProvider.Named.INamedBusFactory">
+            <summary>
+            Factory to resolve a Rebus <see cref="T:Rebus.Bus.IBus" /> by name.
+            </summary>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.INamedBusFactory.Get(System.String)">
+            <summary>
+            Resolves a Rebus bus by name.
+            </summary>
+            <param name="name">The bus name.</param>
+            <returns>Returns a named bus instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the name is <see langword="null" />.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when no bus instance can be resolved.</exception>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.INamedBusFactory.GetStarter(System.String)">
+            <summary>
+            Resolves a Rebus bus starter by name.
+            </summary>
+            <param name="name">The bus name.</param>
+            <returns>Returns a named bus instance.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when the name is <see langword="null" />.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown when no bus instance can be resolved.</exception>
+        </member>
+        <member name="T:Rebus.ServiceProvider.Named.ITypedBus`1">
+            <summary>
+            Encapsulates a Rebus <see cref="T:Rebus.Bus.IBus"/> that can be resolved by a type.
+            </summary>
+            <typeparam name="TName">A marker type to use for the bus name.</typeparam>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.NamedBus.ToString">
+            <inheritdoc />
+        </member>
+        <member name="T:Rebus.ServiceProvider.Named.NamedBusHandlerActivator">
+            <summary>
+            Responsible for creating handlers for incoming messages from a named bus.
+            </summary>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.NamedBusHandlerActivator.GetHandlers``1(``0,Rebus.Transport.ITransactionContext)">
+            <inheritdoc />
+        </member>
+        <member name="P:Rebus.ServiceProvider.Named.NamedBusOptions.Name">
+            <summary>
+            Gets or sets the bus name.
+            </summary>
+        </member>
+        <member name="P:Rebus.ServiceProvider.Named.NamedBusOptions.ConfigureBus">
+            <summary>
+            The delegate to configure the bus.
+            </summary>
+        </member>
+        <member name="T:Rebus.ServiceProvider.Named.ServiceCollectionExtensions">
+            <summary>
+            Registration extensions to add a typed or named Rebus instance.
+            </summary>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.AddTypedRebus``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{Rebus.Config.RebusConfigurer,Rebus.Config.RebusConfigurer})">
+            <summary>
+            Adds a typed Rebus instance. By using typed bus instances, you can host multiple Rebus instances and request a specific instance by requesting a <see cref="T:Rebus.ServiceProvider.Named.ITypedBus`1"/> from the service container.
+            </summary>
+            <remarks>Note that types must be unique.</remarks>
+            <typeparam name="TName">The type that is used to uniquely identify the bus instance.</typeparam>
+            <param name="services">The service collection in which to register the typed bus instance, and in which handlers will be registered.</param>
+            <param name="configure">The Rebus configuration delegate.</param>
+            <returns>The service collection to continue chaining service registrations.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.AddTypedRebus``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Func{Rebus.Config.RebusConfigurer,System.IServiceProvider,Rebus.Config.RebusConfigurer})">
+            <summary>
+            Adds a typed Rebus instance. By using typed bus instances, you can host multiple Rebus instances and request a specific instance by requesting a <see cref="T:Rebus.ServiceProvider.Named.ITypedBus`1"/> from the service container.
+            </summary>
+            <remarks>Note that types must be unique.</remarks>
+            <typeparam name="TName">The type that is used to uniquely identify the bus instance.</typeparam>
+            <param name="services">The service collection in which to register the typed bus instance, and in which handlers will be registered.</param>
+            <param name="configure">The Rebus configuration delegate.</param>
+            <returns>The service collection to continue chaining service registrations.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.AddNamedRebus(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Func{Rebus.Config.RebusConfigurer,Rebus.Config.RebusConfigurer})">
+            <summary>
+            Adds a named Rebus instance. By using named bus instances, you can host multiple Rebus instances and request a specific instance by requesting the <see cref="T:Rebus.ServiceProvider.Named.INamedBusFactory"/> from the service container and then from the factory resolve the desired <see cref="T:Rebus.Bus.IBus"/> by name.
+            </summary>
+            <remarks>Note that instance names must be unique.</remarks>
+            <param name="services">The service collection in which to register the typed bus instance, and in which handlers will be registered.</param>
+            <param name="name">The bus instance name.</param>
+            <param name="configure">The Rebus configuration delegate.</param>
+            <returns>The service collection to continue chaining service registrations.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.AddNamedRebus(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String,System.Func{Rebus.Config.RebusConfigurer,System.IServiceProvider,Rebus.Config.RebusConfigurer})">
+            <summary>
+            Adds a named Rebus instance. By using named bus instances, you can host multiple Rebus instances and request a specific instance by requesting the <see cref="T:Rebus.ServiceProvider.Named.INamedBusFactory"/> from the service container and then from the factory resolve the desired <see cref="T:Rebus.Bus.IBus"/> by name.
+            </summary>
+            <remarks>Note that instance names must be unique.</remarks>
+            <param name="services">The service collection in which to register the typed bus instance, and in which handlers will be registered.</param>
+            <param name="name">The bus instance name.</param>
+            <param name="configure">The Rebus configuration delegate.</param>
+            <returns>The service collection to continue chaining service registrations.</returns>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.EnsureStandaloneIsNotRegistered(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Throws when we detect AddRebus() has been used to register a 'single' bus.
+            Named buses cannot be mixed.
+            </summary>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.EnsureUniqueName(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            Ensures the name is unique in the service container.
+            </summary>
+        </member>
+        <member name="T:Rebus.ServiceProvider.Named.ServiceCollectionExtensions.NameTracker">
+            <summary>
+            Tracks usages of unique bus names.
+            </summary>
+        </member>
+        <member name="M:Rebus.ServiceProvider.Named.TypedBus`1.GetName">
+            <summary>
+            Returns the typed bus name.
+            </summary>
+        </member>
     </members>
 </doc>
