@@ -6,8 +6,7 @@ Forked from the original **Rebus.AzureServiceBus** repository. [Rebus.AzureServi
 
 # How to use?
 
-
-Install following packages:
+Install Rebus.AzureServiceBus.RebusPerQueueTopic package, which is the repository. We are dependent on:
 - Rebus 6.6.2
 - Rebus.ServiceProvider.Named 0.3.0
 - Rebus.Serilog 6.0.0
