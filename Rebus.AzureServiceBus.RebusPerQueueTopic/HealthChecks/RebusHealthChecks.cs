@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Serilog;
+#pragma warning disable CS1591
 
 namespace Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks
 {

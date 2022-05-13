@@ -14,7 +14,6 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic
         /// </summary>
         /// <param name="messageBytes"></param>
         /// <param name="log"></param>
-        /// <param name="message"></param>
         public static (string, string) SetMessageIdFromMasstransitMessage(byte[] messageBytes,
             ILog log)
         {

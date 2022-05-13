@@ -8,19 +8,6 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks
 {
     public static class HealthChecksConfigurer
     {
-         public static void AddSqlServerHealthChecks(IServiceCollection services,
-             string sqlConnectionString)
-         {
-             var timeout = TimeSpan.FromSeconds(30);
-             if (string.IsNullOrEmpty(sqlConnectionString))
-             {
-                 Log.Warning("Skipping sql server health check since connstr null!");
-                 return;
-             }
-        
-             services.AddHealthChecks().AddSqlServer(sqlConnectionString, timeout: timeout);
-         }
-
         public static void AddBusHealthChecks(IServiceCollection services,
             IWebHostEnvironment env, string serviceBusConnectionString, BusHealthCheckOptions options)
         {

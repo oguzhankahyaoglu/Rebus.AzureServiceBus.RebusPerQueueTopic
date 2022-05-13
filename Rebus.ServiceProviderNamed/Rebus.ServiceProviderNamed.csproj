@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net5.0;</TargetFrameworks>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" Condition="$(TargetFramework)=='net6.0'" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" Condition="$(TargetFramework)=='net5.0'" />
+        <PackageReference Include="Rebus.ServiceProvider" Version="7.0.0" />
+    </ItemGroup>
+</Project>

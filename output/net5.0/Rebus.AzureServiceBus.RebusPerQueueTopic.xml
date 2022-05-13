@@ -843,7 +843,6 @@
             </summary>
             <param name="messageBytes"></param>
             <param name="log"></param>
-            <param name="message"></param>
         </member>
         <member name="T:Rebus.Config.AzureServiceBusQueueOneWayToMasstransitConfigurationExtensions">
             <summary>
