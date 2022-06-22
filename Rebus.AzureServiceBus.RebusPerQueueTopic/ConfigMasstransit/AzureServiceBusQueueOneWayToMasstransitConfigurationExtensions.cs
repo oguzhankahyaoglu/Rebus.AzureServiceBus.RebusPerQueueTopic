@@ -75,7 +75,8 @@ namespace Rebus.Config
                 });
 
             RegisterServices(configurer, () => settingsBuilder.LegacyNamingEnabled);
-            AzureRebusCommon.RegisterSteps<AzureServiceBusQueueOneWayToMasstransitTransport>(configurer, retrySettings);
+            AzureRebusCommon.RegisterSteps<AzureServiceBusQueueOneWayToMasstransitTransport>(
+                configurer, retrySettings,false);
             OneWayClientBackdoor.ConfigureOneWayClient(configurer);
             return settingsBuilder;
         }

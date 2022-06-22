@@ -41,6 +41,7 @@ namespace Rebus.Config
         public static AzureServiceBusTransportClientSettings UseAzureServiceBusQueueAsOneWayClient(this StandardConfigurer<ITransport> configurer,
             string connectionString,
             RebusAzureServiceBusSettings retrySettings,
+            bool compress,
             TokenCredential tokenCredential = null)
         {
             var settingsBuilder = new AzureServiceBusTransportClientSettings();
@@ -76,7 +77,8 @@ namespace Rebus.Config
                 });
 
             RegisterServices(configurer, () => settingsBuilder.LegacyNamingEnabled);
-            AzureRebusCommon.RegisterSteps<AzureServiceBusQueueOneWayTransport>(configurer, retrySettings);
+            AzureRebusCommon.RegisterSteps<AzureServiceBusQueueOneWayTransport>(
+                configurer, retrySettings,compress);
             OneWayClientBackdoor.ConfigureOneWayClient(configurer);
 
             return settingsBuilder;

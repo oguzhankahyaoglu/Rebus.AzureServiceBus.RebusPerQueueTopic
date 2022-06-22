@@ -35,6 +35,7 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics
             string topicName,
             string subscriptionName,
             RebusAzureServiceBusSettings retrySettings,
+            bool compress,
             TokenCredential tokenCredential = null)
         {
             var settingsBuilder = new AzureServiceBusTopicTransportSettings
@@ -98,7 +99,8 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics
             configurer.OtherService<ITopicNameConvention>().Register(c => c.Get<DefaultAzureServiceBusTopicNameConvention>());
 
             // remove deferred messages step
-            AzureRebusCommon.RegisterSteps<AzureServiceBusTopicTransport>(configurer ,retrySettings);
+            AzureRebusCommon.RegisterSteps<AzureServiceBusTopicTransport>(
+                configurer ,retrySettings,compress);
             return settingsBuilder;
         }
     }

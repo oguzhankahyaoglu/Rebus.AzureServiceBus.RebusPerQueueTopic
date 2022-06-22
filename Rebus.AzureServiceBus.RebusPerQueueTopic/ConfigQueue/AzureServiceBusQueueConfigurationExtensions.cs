@@ -41,12 +41,13 @@ namespace Rebus.Config
         public static AzureServiceBusQueueTransportSettings UseAzureServiceBusQueue(this StandardConfigurer<ITransport> configurer,
             string connectionString,
             string inputQueueAddress,
-            RebusAzureServiceBusSettings retrySettings,
+            RebusAzureServiceBusSettings settings,
+            bool compress,
             TokenCredential tokenCredential = null)
         {
             var settingsBuilder = new AzureServiceBusQueueTransportSettings
             {
-                MaxDeliveryCount = retrySettings.RetryDelays.Length
+                MaxDeliveryCount = settings.RetryDelays.Length
             };
             // register the actual transport as itself
             configurer
@@ -73,12 +74,14 @@ namespace Rebus.Config
                     {
                         transport.PrefetchMessages(settingsBuilder.NumberOfMessagesToPrefetch);
                     }
+
                     return transport;
                 });
 
             RegisterServices(configurer, () => settingsBuilder.LegacyNamingEnabled);
 
-            AzureRebusCommon.RegisterSteps<AzureServiceBusQueueTransport>(configurer, retrySettings);
+            AzureRebusCommon.RegisterSteps<AzureServiceBusQueueTransport>(
+                configurer, settings, compress);
             return settingsBuilder;
         }
 

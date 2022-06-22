@@ -14,6 +14,7 @@ using Rebus.Threading;
 using Rebus.Timeouts;
 using Rebus.Topic;
 using Rebus.Transport;
+
 // ReSharper disable ArgumentsStyleNamedExpression
 // ReSharper disable ArgumentsStyleLiteral
 // ReSharper disable once CheckNamespace
@@ -25,15 +26,18 @@ namespace Rebus.Config
     /// </summary>
     public static class AzureServiceBusTopicOneWayToMasstransitConfigurationExtensions
     {
-        const string AsbSubStorageText = "The Azure Service Bus transport was inserted as the subscriptions storage because it has native support for pub/sub messaging";
-        const string AsbTimeoutManagerText = "A disabled timeout manager was installed as part of the Azure Service Bus configuration, becuase the transport has native support for deferred messages";
+        const string AsbSubStorageText =
+            "The Azure Service Bus transport was inserted as the subscriptions storage because it has native support for pub/sub messaging";
+
+        const string AsbTimeoutManagerText =
+            "A disabled timeout manager was installed as part of the Azure Service Bus configuration, becuase the transport has native support for deferred messages";
 
         /// <summary>
         /// Configures Rebus to use Azure Service Bus Topic to SEND/PUBLISH ONLY to transport messages, connecting to the service bus instance pointed to by the connection string
         /// (or the connection string with the specified name from the current app.config)
         /// </summary>
-        public static AzureServiceBusTopicTransportSettings UseAzureServiceBusTopicOneWayToMasstransit(this StandardConfigurer<ITransport> configurer, 
-            string connectionString, string topicName, 
+        public static AzureServiceBusTopicTransportSettings UseAzureServiceBusTopicOneWayToMasstransit(this StandardConfigurer<ITransport> configurer,
+            string connectionString, string topicName,
             RebusAzureServiceBusSettings retrySettings,
             TokenCredential tokenCredential = null)
         {
@@ -94,7 +98,8 @@ namespace Rebus.Config
 
             configurer.OtherService<ITopicNameConvention>().Register(c => c.Get<DefaultAzureServiceBusTopicNameConvention>());
 
-            AzureRebusCommon.RegisterSteps<AzureServiceBusTopicOneWayToMasstransitTransport>(configurer, retrySettings);
+            AzureRebusCommon.RegisterSteps<AzureServiceBusTopicOneWayToMasstransitTransport>(
+                configurer, retrySettings, false);
             return settingsBuilder;
         }
     }

@@ -9,6 +9,7 @@ using Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling;
 using Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks;
 using ServiceBusConfigurator.TestWeb.Messaging;
 using TeiasOsosApi.Integration.Events;
+using TestWeb.Messaging;
 
 namespace ServiceBusConfigurator.TestWeb.StartupConfiguration
 {
@@ -31,6 +32,7 @@ namespace ServiceBusConfigurator.TestWeb.StartupConfiguration
                 });
             r.Queue<QueueTestLongRunningMessage, QueueTestLongRunningMessageHandler>(QueueTestLongRunningMessage.QUEUE_NAME);
             //Queues
+            r.Queue<QueueCompressTestMessage, QueueCompressTestMessageHandler>(QueueCompressTestMessage.QUEUE_NAME, true);
             r.Queue<YtbsResultCommand, YtbsResultHandler>(YtbsResultCommand.QUEUE_NAME);
             r.Queue<QueueTestMessage, QueueTestMessageHandler>(QueueTestMessage.QUEUE_NAME);
             r.Queue<QueueTestMessage2, QueueTestMessage2Handler>(QueueTestMessage2.QUEUE_NAME);

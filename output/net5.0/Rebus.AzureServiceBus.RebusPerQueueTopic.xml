@@ -653,7 +653,7 @@
             Configuration extensions for the Azure Service Bus transport
             </summary>
         </member>
-        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicConfigurationExtensions.UseAzureServiceBusTopic(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.ConfigTopics.AzureServiceBusTopicConfigurationExtensions.UseAzureServiceBusTopic(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,System.Boolean,Azure.Core.TokenCredential)">
             <summary>
             Configures Rebus to use Azure Service Bus Topic to transport messages, connecting to the service bus instance pointed to by the connection string
             (or the connection string with the specified name from the current app.config)
@@ -844,6 +844,24 @@
             <param name="messageBytes"></param>
             <param name="log"></param>
         </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.Serializers.BrotliJsonSerializer.JsonUtf8ContentType">
+            <summary>
+            Proper content type when a message has been serialized with this serializer (or another compatible JSON serializer) and it uses the standard UTF8 encoding
+            </summary>
+        </member>
+        <member name="F:Rebus.AzureServiceBus.RebusPerQueueTopic.Serializers.BrotliJsonSerializer.JsonContentType">
+            <summary>Contents type when the content is JSON</summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.Serializers.BrotliJsonSerializer.Serialize(Rebus.Messages.Message)">
+            <summary>
+            Serializes the given <see cref="T:Rebus.Messages.Message" /> into a <see cref="T:Rebus.Messages.TransportMessage" />
+            </summary>
+        </member>
+        <member name="M:Rebus.AzureServiceBus.RebusPerQueueTopic.Serializers.BrotliJsonSerializer.Deserialize(Rebus.Messages.TransportMessage)">
+            <summary>
+            Deserializes the given <see cref="T:Rebus.Messages.TransportMessage" /> back into a <see cref="T:Rebus.Messages.Message" />
+            </summary>
+        </member>
         <member name="T:Rebus.Config.AzureServiceBusQueueOneWayToMasstransitConfigurationExtensions">
             <summary>
             Configuration extensions for the Azure Service Bus transport
@@ -870,7 +888,7 @@
             Configuration extensions for the Azure Service Bus transport
             </summary>
         </member>
-        <member name="M:Rebus.Config.AzureServiceBusQueueOneWayConfigurationExtensions.UseAzureServiceBusQueueAsOneWayClient(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+        <member name="M:Rebus.Config.AzureServiceBusQueueOneWayConfigurationExtensions.UseAzureServiceBusQueueAsOneWayClient(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,System.Boolean,Azure.Core.TokenCredential)">
             <summary>
             Configures Rebus to use Azure Service Bus to transport messages as a one-way client (i.e. will not be able to receive any messages)
             </summary>
@@ -880,7 +898,7 @@
             Configuration extensions for the Azure Service Bus transport
             </summary>
         </member>
-        <member name="M:Rebus.Config.AzureServiceBusQueueConfigurationExtensions.UseAzureServiceBusQueue(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+        <member name="M:Rebus.Config.AzureServiceBusQueueConfigurationExtensions.UseAzureServiceBusQueue(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,System.Boolean,Azure.Core.TokenCredential)">
             <summary>
             Configures Rebus to use Azure Service Bus queues to transport messages, connecting to the service bus instance pointed to by the connection string
             (or the connection string with the specified name from the current app.config)
@@ -891,7 +909,7 @@
             Configuration extensions for the Azure Service Bus transport
             </summary>
         </member>
-        <member name="M:Rebus.Config.AzureServiceBusTopicOneWayConfigurationExtensions.UseAzureServiceBusTopicOneWay(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,Azure.Core.TokenCredential)">
+        <member name="M:Rebus.Config.AzureServiceBusTopicOneWayConfigurationExtensions.UseAzureServiceBusTopicOneWay(Rebus.Config.StandardConfigurer{Rebus.Transport.ITransport},System.String,System.String,Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling.RebusAzureServiceBusSettings,System.Boolean,Azure.Core.TokenCredential)">
             <summary>
             Configures Rebus to use Azure Service Bus Topic to SEND/PUBLISH ONLY to transport messages, connecting to the service bus instance pointed to by the connection string
             (or the connection string with the specified name from the current app.config)

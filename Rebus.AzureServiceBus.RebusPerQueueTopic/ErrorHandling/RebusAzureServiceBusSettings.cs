@@ -8,7 +8,5 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling
         public TimeSpan[] RetryDelays { get; set; }
         
         public IWebHostEnvironment Environment { get; set; }
-        
-        
     }
 }

@@ -37,6 +37,7 @@ namespace Rebus.Config
         public static AzureServiceBusTopicTransportSettings UseAzureServiceBusTopicOneWay(this StandardConfigurer<ITransport> configurer, 
             string connectionString, string topicName, 
             RebusAzureServiceBusSettings retrySettings,
+            bool compress,
             TokenCredential tokenCredential = null)
         {
             configurer.OtherService<Options>().Decorate(c =>
@@ -96,7 +97,8 @@ namespace Rebus.Config
 
             configurer.OtherService<ITopicNameConvention>().Register(c => c.Get<DefaultAzureServiceBusTopicNameConvention>());
 
-            AzureRebusCommon.RegisterSteps<AzureServiceBusTopicOneWayTransport>(configurer ,retrySettings);
+            AzureRebusCommon.RegisterSteps<AzureServiceBusTopicOneWayTransport>(
+                configurer ,retrySettings,compress);
 
             return settingsBuilder;
         }

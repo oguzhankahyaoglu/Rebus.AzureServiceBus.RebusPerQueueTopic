@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>6.2.0</PackageVersion>
+        <PackageVersion>6.3.0</PackageVersion>
         <OutputType>Library</OutputType>
         <RootNamespace>Rebus.AzureServiceBus.RebusPerQueueTopic</RootNamespace>
         <AssemblyName>Rebus.AzureServiceBus.RebusPerQueueTopic</AssemblyName>
@@ -20,6 +20,7 @@
             6- For development environment you have an option of: you can prefix all queue/topic names starting with the machine name; this enables me to seperate my queues and application from another guy working on the same project since my queues are created like "oguzhan/queue1" whereas the other guy's "otherguy/queue1"
             7- For topic subscribing, you have the option of whether you will need multiple node subscription or not. If enabled, for topic "Topic1" and subscription name of "sub", it will create "Topic1/sub-node1" whereas "node1" is the docker container name.
             8- In masstransit you have the limitation of each message is transported with its full namespace. If you move its namespace or change class name, MT will not consume the message. This was an annoying issue for all of us in the company. We are free from this issue thanks to Rebus.
+            9- Brotli compression of transport message body, so expanding default 256kb limitation of Azure Servicebus to many more.
         </PackageDescription>
         <RepositoryUrl>https://github.com/oguzhankahyaoglu/Rebus.AzureServiceBus.RebusPerQueueTopic</RepositoryUrl>
         <PackageIcon>little_rebusbus2_copy-500x500.png</PackageIcon>
@@ -44,7 +45,7 @@
         <PackageReference Include="Rebus.ServiceProvider" Version="7.0.0" />
     </ItemGroup>
     <ItemGroup Condition="$(TargetFramework)=='net6.0'">
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0"  />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="6.0.0" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="6.0.0" />
@@ -60,7 +61,5 @@
             <Pack>True</Pack>
             <PackagePath></PackagePath>
         </None>
-    </ItemGroup>
-    <ItemGroup>
     </ItemGroup>
 </Project>

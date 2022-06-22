@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Fernas.Business.ServiceBus;
 using Microsoft.AspNetCore.Mvc;
 using Rebus.AzureServiceBus.RebusPerQueueTopic.Interfaces;
 using ServiceBusConfigurator.TestWeb.Messaging;
+using TestWeb.Messaging;
 
 namespace ServiceBusConfigurator.TestWeb.Controllers
 {
@@ -18,6 +20,15 @@ namespace ServiceBusConfigurator.TestWeb.Controllers
             IMessageBrokerProvider messageBrokerProvider)
         {
             _messageBrokerProvider = messageBrokerProvider;
+        }
+
+        [HttpPost(nameof(QueueCompressTestMessage))]
+        public async Task QueueCompressTestMessage([FromBody]string body)
+        {
+            await _messageBrokerProvider.Send(new QueueCompressTestMessage
+            {
+                Body = body
+            });
         }
 
         [HttpPost(nameof(SendMasstransitQueueTestMessage))]

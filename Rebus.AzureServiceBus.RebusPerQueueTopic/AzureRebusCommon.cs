@@ -26,7 +26,8 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic
         public static Func<ServiceBusRetryOptions> DefaultRetryStrategy;
 
         public static void RegisterSteps<TTransport>(StandardConfigurer<ITransport> configurer,
-            RebusAzureServiceBusSettings settings)
+            RebusAzureServiceBusSettings settings,
+            bool compress)
             where TTransport : ITransport
         {
             configurer.OtherService<RebusAzureServiceBusSettings>()
@@ -40,7 +41,7 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic
                     MaxDelay = TimeSpan.FromMinutes(5),
                     MaxRetries = 1
                 };
-            AzureServiceBusStepRegistrar.Register<TTransport>(configurer);
+            AzureServiceBusStepRegistrar.Register<TTransport>(configurer, compress);
             configurer.UseNativeDeadlettering();
         }
     }

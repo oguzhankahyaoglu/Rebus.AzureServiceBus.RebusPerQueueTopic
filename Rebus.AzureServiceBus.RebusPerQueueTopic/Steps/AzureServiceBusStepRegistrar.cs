@@ -11,19 +11,22 @@ using Rebus.Pipeline;
 using Rebus.Pipeline.Receive;
 using Rebus.Pipeline.Send;
 using Rebus.Retry.Simple;
+using Rebus.Serialization;
 using Rebus.Transport;
 
 namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
 {
     internal static class AzureServiceBusStepRegistrar
     {
-        public static void Register<TTransport>(StandardConfigurer<ITransport> configurer) where TTransport : ITransport
+        public static void Register<TTransport>(StandardConfigurer<ITransport> configurer,
+            bool compress) where TTransport : ITransport
         {
+            IncomingBrotliCompressionStep(configurer);
             IncomingMasstransitToRebusStep(configurer);
             IncomingMessageTypeHeaderAdjusterStep(configurer);
             HandleDeferredMessagesStep(configurer);
-            
-            switch (typeof(TTransport).Name)
+
+             switch (typeof(TTransport).Name)
             {
                 case nameof(AzureServiceBusQueueOneWayToMasstransitTransport):
                 case nameof(AzureServiceBusTopicOneWayToMasstransitTransport):
@@ -39,6 +42,9 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
                 default:
                     throw new NotImplementedException("Any other transport step registration is ignored, check registrations");
             }
+             
+             if (compress)
+                 OutgoingBrotliCompressStep(configurer);
         }
 
         private static void IncomingMessageExecutionTimeoutWrappingStep(StandardConfigurer<ITransport> configurer)
@@ -63,6 +69,20 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
                 var rebusLoggerFactory = c.Get<IRebusLoggerFactory>();
                 var logger = rebusLoggerFactory.GetLogger<OutgoingRebusToMasstransitStep>();
                 var step = new OutgoingRebusToMasstransitStep(logger);
+                return new PipelineStepInjector(pipeline)
+                    .OnSend(step, PipelineRelativePosition.After, typeof(ValidateOutgoingMessageStep));
+            });
+        }
+
+        private static void OutgoingBrotliCompressStep(StandardConfigurer<ITransport> configurer)
+        {
+            configurer.OtherService<IPipeline>().Decorate(c =>
+            {
+                var pipeline = c.Get<IPipeline>();
+                var rebusLoggerFactory = c.Get<IRebusLoggerFactory>();
+                var serializer = c.Get<ISerializer>();
+                var logger = rebusLoggerFactory.GetLogger<OutgoingRebusToMasstransitStep>();
+                var step = new OutgoingBrotliCompressStep(logger, serializer);
                 return new PipelineStepInjector(pipeline)
                     .OnSend(step, PipelineRelativePosition.After, typeof(ValidateOutgoingMessageStep));
             });
@@ -128,6 +148,19 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
                 var loggerFactory = c.Get<IRebusLoggerFactory>();
                 var log = loggerFactory.GetLogger<IncomingMasstransitToRebusStep>();
                 var step = new IncomingMasstransitToRebusStep(log);
+                return new PipelineStepInjector(pipeline)
+                    .OnReceive(step, PipelineRelativePosition.Before, typeof(SimpleRetryStrategyStep));
+            });
+        }
+
+        private static void IncomingBrotliCompressionStep(StandardConfigurer<ITransport> configurer)
+        {
+            configurer.OtherService<IPipeline>().Decorate(c =>
+            {
+                var pipeline = c.Get<IPipeline>();
+                var loggerFactory = c.Get<IRebusLoggerFactory>();
+                var log = loggerFactory.GetLogger<IncomingBrotliCompressionStep>();
+                var step = new IncomingBrotliCompressionStep(log);
                 return new PipelineStepInjector(pipeline)
                     .OnReceive(step, PipelineRelativePosition.Before, typeof(SimpleRetryStrategyStep));
             });

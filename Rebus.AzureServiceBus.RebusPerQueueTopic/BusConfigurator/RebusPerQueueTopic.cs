@@ -12,10 +12,12 @@ using Rebus.AzureServiceBus.RebusPerQueueTopic.ErrorHandling;
 using Rebus.AzureServiceBus.RebusPerQueueTopic.HealthChecks;
 using Rebus.AzureServiceBus.RebusPerQueueTopic.Interfaces;
 using Rebus.AzureServiceBus.RebusPerQueueTopic.Providers;
+using Rebus.AzureServiceBus.RebusPerQueueTopic.Serializers;
 using Rebus.Config;
 using Rebus.Handlers;
 using Rebus.Retry.Simple;
 using Rebus.Routing.TypeBased;
+using Rebus.Serialization;
 using Rebus.Serialization.Json;
 using Rebus.ServiceProvider;
 using Rebus.ServiceProvider.Named;
@@ -100,7 +102,8 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
             {
                 TypeNameHandling = TypeNameHandling.None,
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
-                NullValueHandling = NullValueHandling.Ignore
+                NullValueHandling = NullValueHandling.Ignore,
+                Formatting = Formatting.None
             };
 
         // private readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
@@ -109,7 +112,12 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
         //     PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         // };
 
-        public void Queue<TMessage, TMessageHandler>(string queueName)
+        private Action<StandardConfigurer<ISerializer>> SerializerChoose()
+        {
+            return s => s.UseNewtonsoftJson(GetNewtonsoftJsonSettings);
+        }
+
+        public void Queue<TMessage, TMessageHandler>(string queueName, bool compress = false)
             where TMessage : class
             where TMessageHandler : IHandleMessages, IHandleMessages<TMessage>
         {
@@ -131,14 +139,14 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
                     .Logging(x => x.Serilog(Log.Logger))
                     .Transport(x =>
                     {
-                        x.UseAzureServiceBusQueue(_serviceBusConnectionString, queueName, _settings)
+                        x.UseAzureServiceBusQueue(_serviceBusConnectionString, queueName, _settings, compress)
                             .SetMessagePayloadSizeLimit(1024 * 1024) //1024 KB
                             .SetAutoDeleteOnIdle(TimeSpan.FromDays(7))
                             .SetMessagePeekLockDuration(TimeSpan.FromMinutes(5))
                             .SetDefaultMessageTimeToLive(TimeSpan.FromDays(1))
                             ;
                     })
-                    .Serialization(s => s.UseNewtonsoftJson(GetNewtonsoftJsonSettings))
+                    .Serialization(SerializerChoose())
                     .Options(CommonOptions)
                     .Routing(x =>
                     {
@@ -153,7 +161,8 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
             });
         }
 
-        public void QueueOneWay<TMessage>(string queueName) where TMessage : class
+        public void QueueOneWay<TMessage>(string queueName, bool compress = false)
+            where TMessage : class
         {
             queueName = _queueTopicNamePrefix + queueName;
             RegisteredMessageTypes.Add(typeof(TMessage));
@@ -165,11 +174,11 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
                     .Logging(x => x.Serilog(Log.Logger))
                     .Transport(x =>
                     {
-                        x.UseAzureServiceBusQueueAsOneWayClient(_serviceBusConnectionString, _settings)
+                        x.UseAzureServiceBusQueueAsOneWayClient(_serviceBusConnectionString, _settings, compress)
                             .SetMessagePayloadSizeLimit(1024 * 1024) //1024 KB
                             ;
                     })
-                    .Serialization(s => s.UseNewtonsoftJson(GetNewtonsoftJsonSettings))
+                    .Serialization(SerializerChoose())
                     .Options(CommonOptions)
                     .Routing(x => { x.TypeBased().Map<TMessage>(queueName); })
                     ;
@@ -209,7 +218,8 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
 
         public void Topic<TMessage, TMessageHandler>(string topicName,
             string subscriberName,
-            bool useMachineNameInSubscriberForMultipleNodes)
+            bool useMachineNameInSubscriberForMultipleNodes,
+            bool compress = false)
             where TMessage : class
             where TMessageHandler : IHandleMessages, IHandleMessages<TMessage>
         {
@@ -241,14 +251,14 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
                     .Transport(x =>
                     {
                         x.UseAzureServiceBusTopic(_serviceBusConnectionString, topicName,
-                                subscriberName, _settings)
+                                subscriberName, _settings, compress)
                             .SetMessagePayloadSizeLimit(1024 * 1024) //1024 KB
                             .SetAutoDeleteOnIdle(TimeSpan.FromDays(7))
                             .SetMessagePeekLockDuration(TimeSpan.FromMinutes(5))
                             .SetDefaultMessageTimeToLive(TimeSpan.FromDays(1))
                             ;
                     })
-                    .Serialization(s => s.UseNewtonsoftJson(GetNewtonsoftJsonSettings))
+                    .Serialization(SerializerChoose())
                     .Options(CommonOptions)
                     .Routing(x => x.TypeBased().Map<TMessage>(topicName))
                     ;
@@ -259,7 +269,8 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
             });
         }
 
-        public void TopicOneWay<TMessage>(string topicName) where TMessage : class
+        public void TopicOneWay<TMessage>(string topicName, bool compress = false)
+            where TMessage : class
         {
             topicName = _queueTopicNamePrefix + topicName;
             RegisteredMessageTypes.Add(typeof(TMessage));
@@ -271,14 +282,14 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.BusConfigurator
                     .Logging(x => x.Serilog(Log.Logger))
                     .Transport(x =>
                     {
-                        x.UseAzureServiceBusTopicOneWay(_serviceBusConnectionString, topicName, _settings)
+                        x.UseAzureServiceBusTopicOneWay(_serviceBusConnectionString, topicName, _settings, compress)
                             .SetMessagePayloadSizeLimit(1024 * 1024) //1024 KB
                             .SetAutoDeleteOnIdle(TimeSpan.FromDays(7))
                             .SetMessagePeekLockDuration(TimeSpan.FromMinutes(5))
                             .SetDefaultMessageTimeToLive(TimeSpan.FromDays(1))
                             ;
                     })
-                    .Serialization(s => s.UseNewtonsoftJson(GetNewtonsoftJsonSettings))
+                    .Serialization(SerializerChoose())
                     .Options(CommonOptions)
                     .Routing(x => x.TypeBased().Map<TMessage>(topicName))
                     ;
