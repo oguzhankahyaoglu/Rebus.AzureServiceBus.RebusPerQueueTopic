@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>6.3.0</PackageVersion>
+        <PackageVersion>6.3.1</PackageVersion>
         <OutputType>Library</OutputType>
         <RootNamespace>Rebus.AzureServiceBus.RebusPerQueueTopic</RootNamespace>
         <AssemblyName>Rebus.AzureServiceBus.RebusPerQueueTopic</AssemblyName>

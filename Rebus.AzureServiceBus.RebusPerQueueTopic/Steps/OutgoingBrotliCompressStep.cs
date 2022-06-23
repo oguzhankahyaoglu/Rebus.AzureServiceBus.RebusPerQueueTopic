@@ -43,7 +43,7 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
             var compressedBytes = Encoding.UTF8.GetBytes(compressed.Result.Value);
             var newMessage = new TransportMessage(oldMessage.Headers.Clone(), compressedBytes);
             context.Save(newMessage);
-            _logger.Debug($"Brotli Reduced from {oldMessageBodyJson.Length} str to {compressedBytes.Length} {compressed}");
+            _logger.Debug($"Brotli Reduced from {oldMessageBodyJson.Length} str to {compressedBytes.Length}");
             await next();
         }
         
