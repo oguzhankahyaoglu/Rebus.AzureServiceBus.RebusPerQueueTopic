@@ -21,12 +21,16 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
         public static void Register<TTransport>(StandardConfigurer<ITransport> configurer,
             bool compress) where TTransport : ITransport
         {
-            IncomingBrotliCompressionStep(configurer);
+            if (compress)
+            {
+                IncomingBrotliCompressionStep(configurer);
+                OutgoingBrotliCompressStep(configurer);
+            }
             IncomingMasstransitToRebusStep(configurer);
             IncomingMessageTypeHeaderAdjusterStep(configurer);
             HandleDeferredMessagesStep(configurer);
 
-             switch (typeof(TTransport).Name)
+            switch (typeof(TTransport).Name)
             {
                 case nameof(AzureServiceBusQueueOneWayToMasstransitTransport):
                 case nameof(AzureServiceBusTopicOneWayToMasstransitTransport):
@@ -42,9 +46,6 @@ namespace Rebus.AzureServiceBus.RebusPerQueueTopic.Steps
                 default:
                     throw new NotImplementedException("Any other transport step registration is ignored, check registrations");
             }
-             
-             if (compress)
-                 OutgoingBrotliCompressStep(configurer);
         }
 
         private static void IncomingMessageExecutionTimeoutWrappingStep(StandardConfigurer<ITransport> configurer)
